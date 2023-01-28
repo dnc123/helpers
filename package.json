@@ -1,11 +1,15 @@
 {
   "name": "@donatas123/helpers-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "send-to-github": "git add . && git commit -m \"Auto deploy\" && git push",
+    "pub": "npm run pub:build && npm run pub:update-version && npm run pub:send-to-npm && npm run send-to-github",
+    "pub:build": "tsc",
+    "pub:update-version": "npm version patch --force",
+    "pub:send-to-npm": "npm publish"
   },
   "repository": {
     "type": "git",
