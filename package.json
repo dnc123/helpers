@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/dnc123/helpers/issues"
   },
-  "homepage": "https://github.com/dnc123/helpers#readme"
+  "homepage": "https://github.com/dnc123/helpers#readme",
+  "devDependencies": {
+    "@types/atob": "^2.1.2",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "atob": "^2.1.2",
+    "date-fns": "^2.29.3",
+    "jsonwebtoken": "^9.0.0"
+  }
 }

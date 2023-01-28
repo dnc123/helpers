@@ -1,6 +1,8 @@
-import {ObjectWithRandomProps} from '../../types';
+type AnyObject = {
+	[key: string]: any;
+}
 
-export default function (targetObject: ObjectWithRandomProps) {
+export default function (targetObject: AnyObject) {
 	let propNames = Object.getOwnPropertyNames(targetObject);
 
 	for (let i = 0; i < propNames.length; i++) {
