@@ -1,8 +1,8 @@
-type ObjectWithRandomProps = {
+type AnyObject = {
 	[key: string]: any;
 }
 
-const timers: ObjectWithRandomProps = {};
+const timers: AnyObject = {};
 
 export default function (
 	uniqueKey: string,
