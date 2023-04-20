@@ -1,4 +1,6 @@
-import AnyObject from "~types/AnyObject";
+type AnyObject = {
+	[key: string]: any;
+}
 
 const timers: AnyObject = {};
 

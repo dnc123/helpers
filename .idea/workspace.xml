@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="798800c4-8aa8-4e30-89ce-e9d82fc010a4" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="browser" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2JuiMQ6y2u8PbWJYb9HROOwxSzP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Donatas/Desktop/projects/helpers/other&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Donatas\Desktop\projects\helpers\other" />
+      <recent name="C:\Users\Donatas\Desktop\projects\helpers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Donatas\Desktop\projects\helpers" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="798800c4-8aa8-4e30-89ce-e9d82fc010a4" name="Changes" comment="" />
+      <created>1672934319293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1672934319293</updated>
+      <workItem from="1672934320365" duration="4042000" />
+      <workItem from="1674932034259" duration="2172000" />
+      <workItem from="1674934352257" duration="3744000" />
+      <workItem from="1675272209384" duration="245000" />
+      <workItem from="1681976310890" duration="549000" />
+      <workItem from="1681976911914" duration="1454000" />
+      <workItem from="1681988711555" duration="1000" />
+      <workItem from="1681988991898" duration="661000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/jwt/verifyAndGetJWTContent.js" />
+        <option value="$PROJECT_DIR$/jwt/sign.js" />
+        <option value="$PROJECT_DIR$/jwt/parse.js" />
+        <option value="$PROJECT_DIR$/map/constants.js" />
+        <option value="$PROJECT_DIR$/map/toRad.js" />
+        <option value="$PROJECT_DIR$/map/addMetersToLongitude.js" />
+        <option value="$PROJECT_DIR$/map/addMetersToLatitude.js" />
+        <option value="$PROJECT_DIR$/map/distanceBetween2CoordinatesKM.js" />
+        <option value="$PROJECT_DIR$/date/isDateObject.js" />
+        <option value="$PROJECT_DIR$/date/removeTimezoneOffset.js" />
+        <option value="$PROJECT_DIR$/date/formatTime.js" />
+        <option value="$PROJECT_DIR$/date/formatDateTime.js" />
+        <option value="$PROJECT_DIR$/date/addTimezoneOffset.js" />
+        <option value="$PROJECT_DIR$/date/isDateString.js" />
+        <option value="$PROJECT_DIR$/date/getEarliestDate.js" />
+        <option value="$PROJECT_DIR$/date/getLatestDate.js" />
+        <option value="$PROJECT_DIR$/date/formatDate.js" />
+        <option value="$PROJECT_DIR$/file/base64ToBuffer.js" />
+        <option value="$PROJECT_DIR$/array/shuffle.js" />
+        <option value="$PROJECT_DIR$/array/filterRemoveObjectDuplicates.js" />
+        <option value="$PROJECT_DIR$/array/findMaxValue.js" />
+        <option value="$PROJECT_DIR$/array/removeFromArrayByKey.js" />
+        <option value="$PROJECT_DIR$/array/sortObjectArrayByNumberKey.js" />
+        <option value="$PROJECT_DIR$/array/sortObjectArrayByStringKey.js" />
+        <option value="$PROJECT_DIR$/array/groupByKey.js" />
+        <option value="$PROJECT_DIR$/array/getRandomItemInArray.js" />
+        <option value="$PROJECT_DIR$/array/forEachAsync.js" />
+        <option value="$PROJECT_DIR$/other/debounce.js" />
+        <option value="$PROJECT_DIR$/regex/constants.js" />
+        <option value="$PROJECT_DIR$/number/convertNormalNumberToMills.js" />
+        <option value="$PROJECT_DIR$/number/formatMoney.js" />
+        <option value="$PROJECT_DIR$/number/round.js" />
+        <option value="$PROJECT_DIR$/number/randomNumberInRange.js" />
+        <option value="$PROJECT_DIR$/number/convertMillsToNormalNumber.js" />
+        <option value="$PROJECT_DIR$/object/deepClone.js" />
+        <option value="$PROJECT_DIR$/object/cleanObject.js" />
+        <option value="$PROJECT_DIR$/string/isJSON.js" />
+        <option value="$PROJECT_DIR$/string/bytesToReadable.js" />
+        <option value="$PROJECT_DIR$/string/capitalizeFirstLetter.js" />
+        <option value="$PROJECT_DIR$/string/toCamelCase.js" />
+        <option value="$PROJECT_DIR$/string/slugify.js" />
+        <option value="$PROJECT_DIR$/string/hashtagify.js" />
+        <option value="$PROJECT_DIR$/string/sanitize.js" />
+        <option value="$PROJECT_DIR$/string/fullFilePathToFileFolderPath.js" />
+        <option value="$PROJECT_DIR$/string/generateUnique.js" />
+        <option value="$PROJECT_DIR$/string/unslugify.js" />
+        <option value="$PROJECT_DIR$/string/truncate.js" />
+        <option value="$PROJECT_DIR$/string/buildQueryParams.js" />
+        <option value="$PROJECT_DIR$/string/makeNumberNthAffix.js" />
+        <option value="$PROJECT_DIR$/string/replaceBetween.js" />
+        <option value="$PROJECT_DIR$/string/insertStringAtIndex.js" />
+        <option value="$PROJECT_DIR$/string/hash.js" />
+        <option value="$PROJECT_DIR$/string/capitalizeFirstLetterOfAllWordsInString.js" />
+        <option value="$PROJECT_DIR$/__tests__/array.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/map.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/string.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/object.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/regex.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/date.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/jwt.test.js" />
+        <option value="$PROJECT_DIR$/__tests__/number.test.js" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
