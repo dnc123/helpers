@@ -1,164 +1,106 @@
 import https from 'https';
-import http, {ClientRequest} from 'http';
+import http from 'http';
 import url from 'url';
-// import {PROJECT_ROOT_PATH} from "~/src/config";
-import buildQueryParams from "../string/buildQueryParams";
 
-type ResponseType = 'buffer' | 'JSON' | 'raw';
+type Headers = Record<string, string>;
+type ResponseType = 'buffer' | 'json' | 'text';
+type RequestResponse = Promise<Buffer | Record<string, unknown> | string>;
 
-type AnyObject = {
-	[key: string]: any;
+type RequestOptions = {
+    method: string;
+    headers?: Headers;
+};
+
+export function get(
+    url: string,
+    payload: Record<string, string> = {},
+    headers: Headers = {},
+    responseType: ResponseType = 'json'
+): RequestResponse {
+    if (payload) {
+        const searchParams = new URLSearchParams(payload);
+
+        url += `?${searchParams.toString()}`;
+    }
+
+    const options: RequestOptions = {
+        method: 'GET',
+        headers: headers,
+    };
+
+    return sendRequest(url, options, undefined, responseType);
 }
 
-// export function downloadFile (targetURL: string, savePath: string) {
-// 	return new Promise((resolve, reject) => {
-// 		const downloadedFileDestination = fs.createWriteStream(
-// 			join(PROJECT_ROOT_PATH, savePath),
-// 		);
-//
-// 		https
-// 			.get(targetURL, (response) => {
-// 				response
-// 					.pipe(downloadedFileDestination)
-// 					.on(`finish`, () => {
-// 						return resolve(null);
-// 					})
-// 					.on(`error`, () => {
-// 						return reject();
-// 					});
-// 			})
-// 			.on(`error`, (error) => {
-// 				return reject(error);
-// 			});
-// 	});
-// }
+export function post(
+    targetURL: string,
+    payload: Record<string, string> = {},
+    headers: Headers = {},
+    responseType: ResponseType = 'json',
+): RequestResponse {
+    const options: RequestOptions = {
+        method: 'POST',
+        headers: headers,
+    };
 
-export function get (
-	URL: string,
-	payload = {},
-	headers = {},
-	responseType: ResponseType = 'JSON',
-): Promise<any> {
-	return new Promise((resolve, reject) => {
-		URL += `?${buildQueryParams(payload)}`;
-
-		call(
-			createRequest(
-				URL,
-				'GET',
-				headers,
-				resolve,
-				reject,
-				responseType,
-			),
-		);
-	});
+    return sendRequest(targetURL, options, payload, responseType);
 }
 
-export function post (
-	URL: string,
-	payload: AnyObject = {},
-	headers: AnyObject = {},
-	responseType: ResponseType = 'JSON',
-	contentType: 'application/json' | 'application/x-www-form-urlencoded' = 'application/json',
-	isPayloadPreparedAlternative = false,
-): Promise<any> {
-	return new Promise((resolve, reject) => {
-		let preparedPayload;
+function sendRequest(
+    targetURL: string,
+    options: RequestOptions,
+    payload: Record<string, string> = {},
+    responseType: ResponseType = 'json',
+): RequestResponse {
+    return new Promise((resolve, reject) => {
+        const targetURLObject = new url.URL(targetURL);
+        const requestModule = targetURLObject.protocol === 'https:' ? https : http;
 
-		if (isPayloadPreparedAlternative) {
-			preparedPayload = [];
+        if (payload && options.method === 'GET') {
+            const searchParams = new URLSearchParams(payload);
 
-			for (let key in payload) {
-				if (payload.hasOwnProperty(key)) {
-					preparedPayload.push(`${encodeURIComponent(key)}=${encodeURIComponent(payload[key])}`);
-				}
-			}
+            targetURLObject.search = searchParams.toString();
+        }
 
-			preparedPayload = preparedPayload.join(`&`);
-		} else {
-			preparedPayload = JSON.stringify(payload);
-		}
+        const request = requestModule.request(targetURLObject.toString(), options, (response) => {
+            const rawData: Uint8Array[] = [];
 
-		const request = createRequest(
-			URL,
-			'POST',
+            response.on('data', (chunk) => {
+                rawData.push(chunk);
+            });
 
-			{
-				'Content-Type': contentType,
-				'Content-Length': preparedPayload.length,
-				...headers,
-			},
+            response.on('end', () => {
+                if (responseType === 'buffer') {
+                    const responseData = Buffer.concat(rawData);
 
-			resolve,
-			reject,
-			responseType,
-		);
+                    return resolve(responseData);
+                }
 
-		request.write(preparedPayload);
-		call(request);
-	});
-}
+                if (responseType === 'json') {
+                    const responseData = JSON.parse(Buffer.concat(rawData).toString());
 
-function createRequest (
-	URL: string,
-	method: 'GET' | 'POST',
-	headers: AnyObject,
-	resolve: Function,
-	reject: Function,
-	responseType: ResponseType,
-) {
-	URL = encodeURI(URL);
+                    return resolve(responseData);
+                }
 
-	const isHTTPS = URL.startsWith(`https`);
-	const requestLibrary = isHTTPS ? https : http;
-	const parsedURL = url.parse(URL);
+                if (responseType === 'text') {
+                    const responseData = Buffer.concat(rawData).toString();
 
-	return requestLibrary.request({
-		hostname: parsedURL.hostname,
-		port: isHTTPS ? 443 : 80,
-		path: parsedURL.path,
-		method,
-		headers,
-	}, (response) => {
-		const data: any = [];
+                    return resolve(responseData);
+                }
+            });
+        });
 
-		if (responseType === 'buffer') {
-			response.setEncoding(`binary`);
+        request.on('error', (error) => {
+            reject(new Error(`Request failed: ${error.message}`));
+        });
 
-			response.on(`data`, chunk => {
-				data.push(Buffer.from(chunk, `binary`));
-			});
-		} else {
-			response.on(`data`, chunk => {
-				data.push(chunk);
-			});
-		}
+        if (payload && options.method !== 'GET') {
+            if (options.headers && !options.headers['Content-Type']) {
+                options.headers['Content-Type'] = 'application/json';
+            }
 
-		response.on(`end`, () => {
-			switch (responseType) {
-				case 'JSON': {
-					try {
-						return resolve(JSON.parse(data.join(``)));
-					} catch (error) {
-						return reject(error);
-					}
-				}
+            request.write(JSON.stringify(payload));
+        }
 
-				case 'buffer': {
-					return resolve(Buffer.concat(data));
-				}
-
-				case 'raw': {
-					return resolve(data.join(``));
-				}
-			}
-		});
-	}).on(`error`, (error) => {
-		return reject(error);
-	});
-}
-
-function call (request: ClientRequest) {
-	request.end();
+        request.end();
+    });
 }

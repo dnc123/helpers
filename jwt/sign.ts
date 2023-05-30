@@ -1,9 +1,23 @@
-import jwt from 'jsonwebtoken';
-import {addDays} from "date-fns";
+import crypto from 'crypto';
 
-export default function (ID: string, secretJWTKey: string) {
-	return jwt.sign({
-		ID,
-		exp: addDays(new Date(), 365).getTime(),
-	}, secretJWTKey);
+export default function(payload: string, secret: string, expiresIn = 365): string {
+    const header = { alg: 'HS256', typ: 'JWT' };
+    const encodedHeader = base64UrlEncode(JSON.stringify(header));
+    const expiration = Math.floor(Date.now() / 1000) + expiresIn;
+    const encodedPayloadWithExp = base64UrlEncode(JSON.stringify({ exp: expiration, payload }));
+    const signature = generateHMAC(encodedHeader + '.' + encodedPayloadWithExp, secret);
+    const token = encodedHeader + '.' + encodedPayloadWithExp + '.' + signature;
+
+    return token;
+}
+
+function base64UrlEncode(str: string): string {
+    const base64 = Buffer.from(str).toString('base64');
+    return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function generateHMAC(data: string, secret: string): string {
+    const hmac = crypto.createHmac('sha256', secret);
+    hmac.update(data);
+    return hmac.digest('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }

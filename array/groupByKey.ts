@@ -1,8 +1,13 @@
-export default function (array: any[], targetKey: string): {} {
-	return array.reduce((accumulator, item) => {
-		accumulator[item[targetKey]] = accumulator[item[targetKey]] || [];
-		accumulator[item[targetKey]].push(item);
+export default function<T extends Record<K, string | number>, K extends keyof T>(
+    array: T[],
+    key: K,
+): Record<T[K], T[]> {
+    return array.reduce((accumulator, item) => {
+        const value = item[key];
 
-		return accumulator;
-	}, {});
+        accumulator[value] = accumulator[value] || [];
+        accumulator[value].push(item);
+
+        return accumulator;
+    }, {} as Record<T[K], T[]>);
 }

@@ -1,15 +1,13 @@
-type AnyObject = {
-	[key: string]: any;
-}
+import AnyObject from 'stricts/types/AnyObject';
 
-export default function (targetObject: AnyObject) {
-	let propNames = Object.getOwnPropertyNames(targetObject);
+export default function (targetObject: AnyObject): void {
+    const propNames = Object.getOwnPropertyNames(targetObject);
 
-	for (let i = 0; i < propNames.length; i++) {
-		let propName = propNames[i];
+    for (let i = 0; i < propNames.length; i++) {
+        const propName = propNames[i];
 
-		if (targetObject[propName] === null || targetObject[propName] === undefined) {
-			delete targetObject[propName];
-		}
-	}
+        if (targetObject[propName] === null || targetObject[propName] === undefined) {
+            delete targetObject[propName];
+        }
+    }
 }

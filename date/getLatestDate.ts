@@ -1,17 +1,19 @@
-import {isAfter} from 'date-fns';
+import { isAfter } from 'date-fns';
 
-export default function (dates: Date[] | Date = []) {
-	if (!Array.isArray(dates)) {
-		dates = [dates];
-	}
+export default function (
+    dates: Date[] | Date = []
+): Date {
+    if (!Array.isArray(dates)) {
+        dates = [dates];
+    }
 
-	let latestDate = dates[0];
+    let latestDate = dates[0];
 
-	dates.forEach((date) => {
-		if (isAfter(date, latestDate)) {
-			latestDate = date;
-		}
-	});
+    dates.forEach((date) => {
+        if (isAfter(date, latestDate)) {
+            latestDate = date;
+        }
+    });
 
-	return latestDate;
+    return latestDate;
 }

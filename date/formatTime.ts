@@ -1,27 +1,27 @@
-import {format as dateFNSFormat} from 'date-fns';
+import { format as dateFNSFormat } from 'date-fns';
 
 export default function (
-	dateObject: Date,
-	isHoursIncluded = true,
-	isMinutesIncluded = true,
-	isSecondsIncluded = true,
-	isMillisecondsIncluded = false,
-) {
-	const timeArr = [];
+    dateObject: Date,
+    isHoursIncluded = true,
+    isMinutesIncluded = true,
+    isSecondsIncluded = true,
+    isMillisecondsIncluded = false,
+): string {
+    const timeArr = [];
 
-	if (isHoursIncluded) {
-		timeArr.push(`HH`);
-	}
+    if (isHoursIncluded) {
+        timeArr.push(`HH`);
+    }
 
-	if (isMinutesIncluded) {
-		timeArr.push(`mm`);
-	}
+    if (isMinutesIncluded) {
+        timeArr.push(`mm`);
+    }
 
-	if (isSecondsIncluded) {
-		timeArr.push(`ss`);
-	}
+    if (isSecondsIncluded) {
+        timeArr.push(`ss`);
+    }
 
-	const timeString = dateFNSFormat(dateObject, timeArr.join(`:`));
+    const timeString = dateFNSFormat(dateObject, timeArr.join(`:`));
 
-	return `${timeString}${isMillisecondsIncluded ? `.SSS` : ``}`;
+    return `${timeString}${isMillisecondsIncluded ? `.SSS` : ``}`;
 }
