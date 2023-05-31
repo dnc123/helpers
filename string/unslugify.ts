@@ -1,5 +1,5 @@
-export default function (text: string = ``): string {
-	return text
-		.split(`-`)
-		.join(` `);
+export default function (text = ``): string {
+    return text
+        .split(`-`)
+        .join(` `);
 }

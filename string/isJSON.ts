@@ -1,9 +1,9 @@
 export default function (value: string): boolean {
-	try {
-		JSON.parse(value);
+    try {
+        JSON.parse(value);
 
-		return true;
-	} catch (e) {
-		return false;
-	}
+        return true;
+    } catch (e) {
+        return false;
+    }
 }

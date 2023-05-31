@@ -1,3 +1,3 @@
-export default function (value: number) {
-	return value * Math.PI / 180;
+export default function (value: number): number {
+    return value * Math.PI / 180;
 }

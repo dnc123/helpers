@@ -1,11 +1,12 @@
-export default function (keyValQueryParams: any = {}): string {
-	return Object.keys(keyValQueryParams)
-		.filter((key) => {
-			return keyValQueryParams[key] !== null
-				&& typeof keyValQueryParams[key] !== `undefined`;
-		})
-		.map((key) => {
-			return `${key}=${keyValQueryParams[key]}`;
-		})
-		.join(`&`);
+import AnyObject from 'stricts/types/AnyObject';
+
+export default function (keyValQueryParams: AnyObject = {}): string {
+    return Object.entries(keyValQueryParams)
+        .filter(([_, value]) => value != null && value !== undefined)
+        .map(([key, value]) => {
+            const encodedKey = encodeURIComponent(key);
+            const encodedValue = encodeURIComponent(String(value));
+            return `${encodedKey}=${encodedValue}`;
+        })
+        .join('&');
 }
