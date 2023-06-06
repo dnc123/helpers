@@ -2,6 +2,7 @@ import https from 'https';
 import http from 'http';
 import url from 'url';
 
+type RequestBody = Record<string, string>;
 type Headers = Record<string, string>;
 type ResponseType = 'buffer' | 'json' | 'text';
 type RequestResponse = Promise<Buffer | Record<string, unknown> | string>;
@@ -13,7 +14,7 @@ type RequestOptions = {
 
 export function get(
     url: string,
-    payload: Record<string, string> = {},
+    payload: RequestBody = {},
     headers: Headers = {},
     responseType: ResponseType = 'json'
 ): RequestResponse {
@@ -33,7 +34,7 @@ export function get(
 
 export function post(
     targetURL: string,
-    payload: Record<string, string> = {},
+    payload: RequestBody = {},
     headers: Headers = {},
     responseType: ResponseType = 'json',
 ): RequestResponse {
@@ -48,7 +49,7 @@ export function post(
 function sendRequest(
     targetURL: string,
     options: RequestOptions,
-    payload: Record<string, string> = {},
+    payload: RequestBody = {},
     responseType: ResponseType = 'json',
 ): RequestResponse {
     return new Promise((resolve, reject) => {

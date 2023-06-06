@@ -2,6 +2,10 @@ import fs from 'fs';
 import path from 'path';
 
 export default function truncate(targetPath: string): void {
+    if (!fs.existsSync(targetPath)) {
+        return;
+    }
+
     const files = fs.readdirSync(targetPath);
 
     for (const file of files) {
@@ -16,6 +20,3 @@ export default function truncate(targetPath: string): void {
         }
     }
 }
-
-
-
