@@ -1,9 +1,11 @@
 import crypto from 'crypto';
 
-export default function(payload: string, secret: string, expiresIn = 365): string {
+const SECONDS_IN_YEAR = 31536000;
+
+export default function(payload: string, secret: string, expiresInSeconds = SECONDS_IN_YEAR): string {
     const header = { alg: 'HS256', typ: 'JWT' };
     const encodedHeader = base64UrlEncode(JSON.stringify(header));
-    const expiration = Math.floor(Date.now() / 1000) + expiresIn;
+    const expiration = Math.floor(Date.now() / 1000) + expiresInSeconds;
     const encodedPayloadWithExp = base64UrlEncode(JSON.stringify({ exp: expiration, payload }));
     const signature = generateHMAC(encodedHeader + '.' + encodedPayloadWithExp, secret);
     const token = encodedHeader + '.' + encodedPayloadWithExp + '.' + signature;
