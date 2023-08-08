@@ -20,6 +20,8 @@ function base64UrlEncode(str: string): string {
 
 function generateHMAC(data: string, secret: string): string {
     const hmac = crypto.createHmac('sha256', secret);
+
     hmac.update(data);
+
     return hmac.digest('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
