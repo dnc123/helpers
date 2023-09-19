@@ -4,7 +4,7 @@ const recentUniquelyGeneratedStrings = [];
 function default_1(hashStrength = 12) {
     let uniqueString;
     do {
-        const possibleCharacters = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`;
+        const possibleCharacters = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`;
         let randomString = '';
         for (let i = 0; i < hashStrength; i++) {
             randomString += possibleCharacters.charAt(Math.floor(Math.random() * possibleCharacters.length));
