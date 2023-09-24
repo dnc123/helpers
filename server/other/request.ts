@@ -31,6 +31,7 @@ function sendRequest (options: RequestOptions): Promise<any> {
 			res.on('end', () => {
 				if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
 					let parsedResponse;
+
 					try {
 						parsedResponse = JSON.parse(responseData);
 					} catch (error) {
