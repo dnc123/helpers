@@ -1,27 +1,18 @@
-import { format as dateFNSFormat } from 'date-fns';
+function padZero(num: number) {
+    return num.toString().padStart(2, '0');
+}
 
-export default function (
+export default function formatTime(
     dateObject: Date,
     isHoursIncluded = true,
     isMinutesIncluded = true,
     isSecondsIncluded = true,
     isMillisecondsIncluded = false,
-): string {
-    const timeArr = [];
+) {
+    const hours = isHoursIncluded ? padZero(dateObject.getHours()) : '';
+    const minutes = isMinutesIncluded ? padZero(dateObject.getMinutes()) : '';
+    const seconds = isSecondsIncluded ? padZero(dateObject.getSeconds()) : '';
+    const milliseconds = isMillisecondsIncluded ? `.${dateObject.getMilliseconds().toString().padStart(3, '0')}` : '';
 
-    if (isHoursIncluded) {
-        timeArr.push(`HH`);
-    }
-
-    if (isMinutesIncluded) {
-        timeArr.push(`mm`);
-    }
-
-    if (isSecondsIncluded) {
-        timeArr.push(`ss`);
-    }
-
-    const timeString = dateFNSFormat(dateObject, timeArr.join(`:`));
-
-    return `${timeString}${isMillisecondsIncluded ? `.SSS` : ``}`;
+    return `${hours}:${minutes}:${seconds}${milliseconds}`;
 }

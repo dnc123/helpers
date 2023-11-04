@@ -1,8 +1,7 @@
-import { format as dateFNSFormat } from 'date-fns';
 import formatDate from './formatDate';
 import formatTime from './formatTime';
 
-export default function (
+export default function formatDateTime(
     dateObject: Date,
     isYearIncluded = true,
     isMonthIncluded = true,
@@ -11,7 +10,7 @@ export default function (
     isMinutesIncluded = true,
     isSecondsIncluded = true,
     isMillisecondsIncluded = false,
-): string {
+) {
     const formattedDate = formatDate(
         dateObject,
         isYearIncluded,
@@ -19,7 +18,7 @@ export default function (
         isDayIncluded,
     );
 
-    const formattedTime = formatTime(
+    const formattedTimeString = formatTime(
         dateObject,
         isHoursIncluded,
         isMinutesIncluded,
@@ -27,8 +26,5 @@ export default function (
         isMillisecondsIncluded,
     );
 
-    return dateFNSFormat(
-        dateObject,
-        `${formattedDate} ${formattedTime}`,
-    );
+    return `${formattedDate} ${formattedTimeString}`;
 }

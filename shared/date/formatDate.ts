@@ -1,28 +1,30 @@
-import { format as dateFNSFormat } from 'date-fns';
-
 export default function (
-    dateObject: Date | string,
+    date: Date | string,
     isYearIncluded = true,
     isMonthIncluded = true,
     isDayIncluded = true,
-): string {
-    if (typeof dateObject === `string`) {
-        dateObject = new Date(dateObject);
+) {
+    if (typeof date === 'string') {
+        date = new Date(date);
     }
+
+    const year = isYearIncluded ? date.getFullYear() : '';
+    const month = isMonthIncluded ? String(date.getMonth() + 1).padStart(2, '0') : '';
+    const day = isDayIncluded ? String(date.getDate()).padStart(2, '0') : '';
 
     const dateArr = [];
 
-    if (isYearIncluded) {
-        dateArr.push(`yyyy`);
+    if (year) {
+        dateArr.push(year);
     }
 
-    if (isMonthIncluded) {
-        dateArr.push(`MM`);
+    if (month) {
+        dateArr.push(month);
     }
 
-    if (isDayIncluded) {
-        dateArr.push(`dd`);
+    if (day) {
+        dateArr.push(day);
     }
 
-    return dateFNSFormat(dateObject, dateArr.join(`-`));
+    return dateArr.join('-');
 }
