@@ -1,20 +1,20 @@
-export default function (text: string): string {
-    if (!text) {
-        return text;
-    }
+export default function capitalizeSentences(text: string): string {
+    let capitalizeNext = true;
 
-    const sentences: string[] = text.trim().split(/([.!?])(?!\s|$)/); // Split text into sentences
+    return Array
+        .from(text)
+        .map((char) => {
+            if (capitalizeNext && char.trim().length > 0) {
+                capitalizeNext = false;
 
-    for (let i = 0; i < sentences.length; i += 2) {
-        const sentence = sentences[i].trim();
+                return char.toUpperCase();
+            } else {
+                if (char.match(/[.!?]/)) {
+                    capitalizeNext = true;
+                }
 
-        if (sentence.length > 0) {
-            const firstLetter = sentence.charAt(0).toUpperCase();
-            const restOfSentence = sentence.slice(1);
-
-            sentences[i] = firstLetter + restOfSentence;
-        }
-    }
-
-    return sentences.join('');
+                return char;
+            }
+        })
+        .join('');
 }
