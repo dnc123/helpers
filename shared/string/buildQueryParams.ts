@@ -1,4 +1,5 @@
-import AnyObject from 'stricts/types/AnyObject';
+//todo reuse AnyObject in helpers library
+type AnyObject = Record<string, unknown>
 
 export default function (keyValQueryParams: AnyObject = {}): string {
     return Object.entries(keyValQueryParams)
