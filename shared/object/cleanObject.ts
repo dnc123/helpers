@@ -1,4 +1,4 @@
-import AnyObject from 'stricts/types/AnyObject';
+type AnyObject = Record<string, unknown>
 
 export default function (targetObject: AnyObject): void {
     const propNames = Object.getOwnPropertyNames(targetObject);
